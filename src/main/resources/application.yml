@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: kmprofessor
+  # Configurações do banco de dados
+  datasource:
+    url: jdbc:postgresql://localhost:5432/provas_db
+    username: km
+    password: ${DB_PASSWORD:km} # Usa variável de ambiente, com 'km' como padrão para dev
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate # Mais seguro para produção, valida o schema contra as entidades
+    open-in-view: false
+    properties:
+      hibernate.format_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: false # Habilita o Flyway para gerenciar migrações do banco
+    locations: classpath:db/migration
+  # Configurações do Spring AI para OpenAI
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY} # Chave de API global (opcional, pode ser definida por requisição)
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.7
+
+openrouter:
+  api:
+    base-url: https://openrouter.ai/api/v1
+    key: ${OPENROUTER_API_KEY}     # defina no ambiente
+    model: deepseek/deepseek-r1:free
+    referer: http://localhost:8080  # recomendado pelo OpenRouter
+    title: KMProfessor (dev)        # recomendado pelo OpenRouter
+
+# Configurações do JWT
+jwt:
+  issuer: KMProfessorApi
+  audience: KMProfessorWeb
+  expiration: ${JWT_EXPIRATION:86400000} # 24 horas em ms como padrão
+  secret: ${JWT_SECRET}
+
+# Configurações da API DeepSeek
+deepseek:
+  api:
+    url: https://api.deepseek.com/v1/
+    timeout: 30
+    key: ${DEEPSEEK_API_KEY}
+
+
+server:
+  port: 8080
+    
