@@ -8,7 +8,7 @@ Exam management system built with **Java 17+ (Spring Boot)**, **Angular 17+**, a
 
 ## 📚 About the Project
 
-The goal of **KMProfessor** is to allow teachers to register exams, questions, and answer keys, with ChatGPT integration for automatic answer generation and future features for import/export.
+The goal of **KMProfessor** is to allow teachers to register exams, questions, and answer keys, with AI integration for automatic answer generation and future features for import/export.
 
 ---
 
